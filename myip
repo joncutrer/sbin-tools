@@ -6,9 +6,9 @@
 
 VERSION="0.1.1"
 USAGE=$(cat <<-EOF
-Get the default IP address of the machine\n
-The one that is assigned to the interface\n
-that the default gateway is associated with
+Get the default IP address of the machine.
+The one you are always after when you type ifconfig
+The IP assigned to the interface that the default route belongs to
 
 Syntax & Example Usage
 
@@ -20,15 +20,13 @@ Syntax & Example Usage
   myip all        Print all; ifname ipaddr mask gw
   myip help       Print this information
 
-
- Command Line Options (TODO: Not Currently Implemented)
- 
+Command Line Options
   -v,--version:  Print Version Number
   -h,--help:     Alias for help
-  -a,--all:      Print all configured IP addresses
-  -l,--list:     Print all Interface Name and IPs, one per line 
-  --cidr:        Show IP with CIDR subnet mask i.e. /24
-  --csv:         Output in CSV format
+  -a,--all:      TODO: Print all configured IP addresses
+  -l,--list:     TODO: Print all Interface Name and IPs, one per line 
+  --cidr:        TODO: Show IP with CIDR subnet mask i.e. /24
+  --csv:         TODO: Output in CSV format
 
 EOF
 )
