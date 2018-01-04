@@ -1,8 +1,8 @@
 ## myip
 
 Get the default IP address of the machine.
-The one you are always after when you type ifconfig
-IP assigned to the interface that the default route belongs to
+The one you are always after when you type ifconfig. 
+The IP assigned to the interface that the default route belongs to
 
 ```
 Syntax & Example Usage
