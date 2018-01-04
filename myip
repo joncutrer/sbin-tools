@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+# @author JC <https://github.com/joncutrer>
+# @version 0.1.1
+# @license MIT
+
+VERSION="0.1.1"
+USAGE=$(cat <<-EOF
+Get the default IP address of the machine\n
+The one that is assigned to the interface\n
+that the default gateway is associated with
+
+Syntax & Example Usage
+
+  myip            Print the primary IP Address
+  myip ip         Verbose, same as above cmd
+  myip if         Print only the default interface name
+  myip sm         Print only the subnet mask
+  myip gw         Print only the default gateway IP
+  myip all        Print all; ifname ipaddr mask gw
+  myip help       Print this information
+
+
+ Command Line Options (TODO: Not Currently Implemented)
+ 
+  -v,--version:  Print Version Number
+  -h,--help:     Alias for help
+  -a,--all:      Print all configured IP addresses
+  -l,--list:     Print all Interface Name and IPs, one per line 
+  --cidr:        Show IP with CIDR subnet mask i.e. /24
+  --csv:         Output in CSV format
+
+EOF
+)
+
+def_if=`ip route list | grep -e "^default" | awk '{print $5}'`
+def_gw=`ip route list | grep -e "^default" | awk '{print $3}'`
+def_ip=`ifconfig $def_if | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1`
+def_sm=`ifconfig $def_if | grep "inet addr" | cut -d ':' -f 4 | cut -d ' ' -f 1`
+
+
+if [ -z "$1" ] || [ "$1" == "ip" ]; then 
+        echo "$def_ip"
+        exit
+fi
+
+if [ "$1" == "if" ]; then
+        echo $def_if
+        exit
+fi
+
+if [ "$1" == "sm" ]; then
+        echo $def_sm                    
+        exit
+fi
+
+if [ "$1" == "gw" ]; then
+        echo $def_gw     
+        exit
+fi 
+
+if [ "$1" == "all" ]; then
+        echo "$def_if $def_ip $def_sm $def_gw"
+        exit
+fi
+
+if [ "$1" == "help" ]  || [ "$1" == "-h" ]  || [ "$1" == "--help" ]; then
+        echo "$USAGE"
+        exit
+fi
+
+if [ "$1" == "-v" ] || [ "$1" == "--version" ]; then                   
+        echo "$VERSION"                         
+        exit
+fi 
+
