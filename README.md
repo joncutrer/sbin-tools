@@ -23,3 +23,16 @@ Command Line Options
   --cidr:        TODO: Show IP with CIDR subnet mask i.e. /24
   --csv:         TODO: Output in CSV format
 ```
+
+## httphere
+
+A quick and easy way to serve up files from a directory using a simple http server built into python
+
+The script will detect the installed version of python and use it, prefering python3
+
+```
+Syntax & Example Usage
+
+  httphere            Starts an http server listening on port 8000 serving files from pwd
+  
+```
