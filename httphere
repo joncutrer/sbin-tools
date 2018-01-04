@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# @author JC <https://github.com/joncutrer>
+# @version 0.1.1
+# @license MIT
+#
+#
+# A quick and easy way to serve up files from a directory
+# using a simple http server built into python
+#
+#
+#
+
+# Check if python3 is installed
+py3_bin=`which python3`
+
+# Check if python3 is installed
+py2_bin=`which python`
+
+# Decide which version to use (prefer Python 3)
+if [ -z "$py3_bin" ]; then
+        py3=0
+else
+        py3=1
+        py_ver=3
+        py_bin=$py3_bin
+fi
+
+if [ -z "$py2_bin" ]; then
+        py2=0     
+else        
+        py2=1
+        py_ver=2
+        py_bin=$py2_bin      
+fi 
+
+if [ -z "$py_bin" ]; then
+        echo "Python no installed or could not be located"
+        exit
+fi
+
+
+if [ $py_ver == 3 ]; then
+        echo "Now serving Files from '`pwd`' via http, press Ctrl+c to exit."
+        echo ""
+        $py_bin -m http.server 8000
+        exit
+fi
+
+if [ $py_ver == 2 ]; then
+        $py_bin -m SimpleHTTPServer 8000
+fi
