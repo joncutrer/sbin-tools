@@ -1,6 +1,6 @@
 ## myip
 
-Get the default IP address of the machine.
+Get the primary IP address of the machine.
 The one you are always after when you type ifconfig. 
 The IP assigned to the interface that the default route belongs to
 
